@@ -8,3 +8,5 @@ Download it [here](https://github.com/mayhewsw/uiuc-beamer-theme).
 
 Make sure to do make clean before commiting, otherwise you may accidently include *.log/aux/bbl files
 
+Modifying README as GIT test.
+

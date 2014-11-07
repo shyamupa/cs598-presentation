@@ -1,44 +1,71 @@
 
 \begin{frame}{Introduction and definitions}
-\begin{itemize}
-\item Sub-differential (sub-gradient)
-\item Convex Conjugate
-\item Dual Norm
-\item Strong Convexity
-\item Smoothness
-\end{itemize}
+  \begin{itemize}
+  \item Sub-differential (sub-gradient)
+  \item Convex Conjugate
+  \item Dual Norm
+  \item Strong Convexity
+  \item Smoothness
+  \end{itemize}
 \end{frame}
 
 \begin{frame}{Strong Convexity}
-A function is said to be $\beta$ strongly convex if,
-\begin{align*}
-\f(\x+\y) \ge \underbrace{\f(\x) + \dotprod{\grad \f(\x)}{\y}}_{\text{the value of the tangent}} +\frac{\beta}{2} \|\y\|^2
-\end{align*}
-
+  A function is said to be $\beta$ strongly convex if,
+  \begin{align*}
+    \f(\x+\y) \ge \underbrace{\f(\x) + \dotprod{\grad \f(\x)}{\y}}_{\text{the value of the tangent}} +\frac{\beta}{2} \|\y\|^2
+  \end{align*}
+  Equivalently,
+  \begin{align*}
+    f(\alpha x +(1-\alpha)y) \le \alpha f(x) + (1-\alpha)f(y) - \alpha(1-\alpha)\frac{\beta}{2} \|y-x\|^2
+  \end{align*}
 \end{frame}
 
 \begin{frame}{Smoothness}
-A function is said to be $\beta$ smooth if,
-\begin{align*}
-\f(\x+\y) \le \f(\x) + \dotprod{\grad \f(\x)}{\y} +\frac{\beta}{2} \|\y\|^2
-\end{align*}
+  A function is said to be $\beta$ smooth if,
+  \begin{align*}
+    \f(\x+\y) \le \f(\x) + \dotprod{\grad \f(\x)}{\y} +\frac{\beta}{2} \|\y\|^2
+  \end{align*}
 \end{frame}
 
 \begin{frame}{Strong/Smoothness Duality}
-\begin{theorem}
-Assume $\f$ is closed and convex function. Then
-\begin{align*}
-\f \text{ is } \beta\text{-strongly convex} \iff \opt{\f} \text{ is } \frac{1}{\beta}\text{-smooth}
-\end{align*}
-\end{theorem}
+  \begin{theorem}
+    Assume $\f$ is closed and convex function. Then
+    \begin{align*}
+      \f \text{ is } \beta\text{-strongly convex} \iff \opt{\f} \text{ is } \frac{1}{\beta}\text{-smooth}
+    \end{align*}
+  \end{theorem}
 \end{frame}
 
 \begin{frame}{A Useful Lemma}
+  \begin{lemma}
+    If $\f$ is $\beta$ strong convex,
+    \begin{align*}
+      \sum_{i=1}^n \dotprod{v_i}{u} \le \opt{\f}(v_{1:n}) \le \sum_{i=1}^n \dotprod{\grad \opt{\f}(v_{1:i-1})}{v_i} +\frac{1}{2\beta} \sum_{i=1}^n \|v_i\|^2
+    \end{align*}
+  \end{lemma}
+  \begin{proof}
+    Induction on the definition of smoothness.
+  \end{proof}
+\end{frame}
+
+\begin{frame}{Follow the Regularized Leader}
+  \begin{algorithmic}
+    \Let{$\w_1$}{$\grad \opt{f}(0)$} 
+    \For{$t=1$ ... $T$}
+    \State Play $\w_t \in S$
+    \State Receive $l_t$ and pick $v_t \in \partial l_t(w_t)$
+    \State Update,
+    \Let{$w_{t+1}$}{$\grad \opt{f}(-\eta \sum_{s=1}^{t} v_s)$}
+    \EndFor
+  \end{algorithmic}
 \end{frame}
 
 \begin{frame}{Generalized Regret Bound}
+  \begin{theorem}
+    TODO
+  \end{theorem}
 \end{frame}
 
-
 \begin{frame}{Rademacher Bounds}
+  TODO
 \end{frame}

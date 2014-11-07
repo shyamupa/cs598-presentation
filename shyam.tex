@@ -1,0 +1,44 @@
+
+\begin{frame}{Introduction and definitions}
+\begin{itemize}
+\item Sub-differential (sub-gradient)
+\item Convex Conjugate
+\item Dual Norm
+\item Strong Convexity
+\item Smoothness
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Strong Convexity}
+A function is said to be $\beta$ strongly convex if,
+\begin{align*}
+\f(\x+\y) \ge \underbrace{\f(\x) + \dotprod{\grad \f(\x)}{\y}}_{\text{the value of the tangent}} +\frac{\beta}{2} \|\y\|^2
+\end{align*}
+
+\end{frame}
+
+\begin{frame}{Smoothness}
+A function is said to be $\beta$ smooth if,
+\begin{align*}
+\f(\x+\y) \le \f(\x) + \dotprod{\grad \f(\x)}{\y} +\frac{\beta}{2} \|\y\|^2
+\end{align*}
+\end{frame}
+
+\begin{frame}{Strong/Smoothness Duality}
+\begin{theorem}
+Assume $\f$ is closed and convex function. Then
+\begin{align*}
+\f \text{ is } \beta\text{-strongly convex} \iff \opt{\f} \text{ is } \frac{1}{\beta}\text{-smooth}
+\end{align*}
+\end{theorem}
+\end{frame}
+
+\begin{frame}{A Useful Lemma}
+\end{frame}
+
+\begin{frame}{Generalized Regret Bound}
+\end{frame}
+
+
+\begin{frame}{Rademacher Bounds}
+\end{frame}

@@ -10,7 +10,37 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 
-\author{Shyam Uphadhyay, Adam Vollrath, Stephen Mayhew}
+\DeclareMathOperator*{\argmin}{\mathbf{arg\,min}}
+\DeclareMathOperator*{\argmax}{\mathbf{arg\,max}}
+\DeclareMathOperator*{\sup}{sup}
+\DeclareMathOperator{\F}{\mathscr{F}} % Function Classes
+\DeclareMathOperator{\H}{\mathscr{H}} % Hilbert Spaces
+\DeclareMathOperator{\R}{\mathbb{R}} % Reals
+\DeclareMathOperator{\E}{\mathbb{E}} % Expectation
+\DeclareMathOperator{\Or}{\mathcal{O}} % Order Notation
+\DeclareMathOperator{\Tr}{\textbf{Tr}} % Expectation
+\DeclareMathOperator{\grad}{\nabla} % Gradient
+\DeclareMathOperator{\LLH}{\mathcal{L}} % Log Likelihood etc.
+\DeclareMathOperator{\Lag}{\mathcal{L}} % Lagrangian etc.
+\DeclareMathOperator{\X}{\mathcal{X}} % input space X
+\DeclareMathOperator{\Y}{\mathcal{Y}} % output space Y
+\DeclareMathOperator{\bF}{\mathbf{F}} 
+\DeclareMathOperator{\w}{\mathbf{w}} % weight vector
+\DeclareMathOperator{\y}{\mathbf{y}} % output structure
+\DeclareMathOperator{\x}{\mathbf{x}} % input structure
+\DeclareMathOperator{\f}{\mathbf{f}} % function
+\DeclareMathOperator{\implies}{\rightarrow} % implies
+
+\newcommand{\opt}[1]{{#1}^{*}} % Optimal 
+\newcommand{\pred}[1]{\hat{#1}} % Prediction 
+\newcommand{\dnorm}[1]{{#1}^{*}} % Dual
+\newcommand{\dotprod}[2]{ \langle {#1} , {#2} \rangle } % <w,x> style
+\renewcommand{\Pr}{\mathbb{P}} % Probability
+\renewcommand{\vec}[1]{\mathbf{#1}} % vectors
+
+
+
+\author{Shyam Upadhyay, Adam Vollrath, Stephen Mayhew}
 \title{On the duality of strong convexity and srong smoothness: Learning applications and matrix regularization}
 
 \setbeamercovered{transparent} 
@@ -29,11 +59,7 @@
 %\tableofcontents
 %\end{frame}
 
-\begin{frame}{Introduction and definitions}
-
-Shyam
-
-\end{frame}
+\input{shyam.tex}
 
 \begin{frame}{Group Lasso}
 

@@ -1,0 +1,4 @@
+| Norm  | Dual Norm                               |
+| $l_2$ | $l_2$                                   |
+| $l_1$ | $l_{\infty}$                            |
+| $l_p$ | $l_q$ where $\frac{1}{p}+\frac{1}{q}=1$ |

@@ -1,35 +1,12 @@
-
 \begin{frame}{Introduction and definitions}
   \begin{itemize}
+  \item Strong Convexity
   \item Sub-differential (sub-gradient)
   \item Convex Conjugate
   \item Dual Norm
-  \item Strong Convexity
   \item Smoothness
   \end{itemize}
 \end{frame}
-
-\begin{frame}{Convex Conjugate}
-  \begin{figure}
-    \includegraphics[scale=0.27]{images/fenchel.png}
-    \caption{From \cite{ShSh2012}}
-  \end{figure}
-\end{frame}
-
-\begin{frame}{Convex Conjugate}
-  \begin{align*}
-    \opt{\f}(\y) = \max_x \dotprod{\x}{\y} - \f(\x)
-  \end{align*}
-\end{frame}
-
-\begin{frame}{Dual Norm}
-  \begin{align*}
-    \opt{\f}(\y) = \max_x \dotprod{\x}{\y} - \f(\x)
-  \end{align*}
-  Fenchel conjugate of $\frac{\|\x\|^2}{2}$ is $\frac{\|\x\|_{*}^2}{2}$.
-\end{frame}
-
-
 \begin{frame}{Strong Convexity}
   Recall a function is convex if,
   \begin{align*} 
@@ -53,11 +30,42 @@
   \end{align*}
 \end{frame}
 
+\begin{frame}{Convex Conjugate of a function}
+  Also called Fenchel Conjugate of a function.
+  \begin{figure}
+    \includegraphics[scale=0.27]{images/fenchel.png}
+    \caption{From \cite{ShSh2012}}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Convex Conjugate}
+  \begin{align*}
+    \opt{\f}(\y) = \max_x \dotprod{\x}{\y} - \f(\x)
+  \end{align*}
+\end{frame}
+
+\begin{frame}{Dual Norm}
+  \begin{align*}
+    \|y\|_{*} = \sup\{\dotprod{x}{y} : \|x\| \le 1\}
+  \end{align*}
+      {\bf Important Property:} Fenchel conjugate of $\frac{\|\x\|^2}{2}$ is $\frac{\|\x\|_{*}^2}{2}$.
+      \begin{center}
+        \begin{tabular}{ll}
+          Norm & Dual Norm\\
+          \hline
+          $l_2$ & $l_2$\\
+          $l_1$ & $l_{\infty}$\\
+          $l_p$ & $l_q$ where $\frac{1}{p}+\frac{1}{q}=1$\\
+        \end{tabular}
+      \end{center}
+\end{frame}
+
 \begin{frame}{Smoothness}
   A function is said to be $\beta$ smooth if,
   \begin{align*}
     \f(\x+\y) \le \f(\x) + \dotprod{\grad \f(\x)}{\y} +\frac{\beta}{2} \|\y\|^2
   \end{align*}
+  Note the difference from strong convexity.
 \end{frame}
 
 \begin{frame}{Strong/Smoothness Duality}
@@ -133,15 +141,26 @@
 
 
 \begin{frame}{Rademacher Bounds}
+  For a dataset $T=(X_1,X_2,...,X_n)$ of i.i.d samples from a fixed distribution $\X$, the rademacher complexity of a class of function $\F$ on $T$ is given y
   \begin{align*}
-    \Rad(\F) = \E \left[ \sup_{f \in \F} \frac{1}{n}\sum_{i=1}^n \epsilon_i f(X_i) \right]
+    \Rad_T(\F) = \E \left[ \sup_{f \in \F} \frac{1}{n}\sum_{i=1}^n \epsilon_i f(X_i) \right]
   \end{align*}
+  We can also take expectation over $T$, to obtain,
   \begin{align*}
-    \X = \{ x : \|\|_{*} \le X \} \\
-    \mathscr{W} = {w : f(w) \le f_{max}} \\
-    \F = \{ x \mapsto \dotprod{w}{x} : w \in \mathscr{W} \} \\
-    \Rad(\F) \le X\sqrt{\frac{2f_{max}}{\beta n}}
+  \Rad_n(\F)=\E_{T}\left[\Rad_T(\F)\right]
   \end{align*}
+\end{frame}
+
+\begin{frame}{Rademacher Bounds}
+  \begin{theorem}
+    Let $f$ be a $\beta$-strongly convex function. Define,
+  \begin{align*}
+    & \X = \{ x : \|x\|_{*} \le X \} \\
+    & \mathscr{W} = \{w : f(w) \le f_{max}\} \\
+    & \F = \{ x \mapsto \dotprod{w}{x} : w \in \mathscr{W} \} \\
+    & \Rad(\F) \le X\sqrt{\frac{2f_{max}}{\beta n}}
+  \end{align*}
+  \end{theorem}
 \end{frame}
 
 \begin{frame}

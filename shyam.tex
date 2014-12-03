@@ -85,6 +85,10 @@
     \end{align*}
   \end{lemma}
   \begin{proof}
+    \begin{align*}
+      \sum_{i=1}^n \dotprod{v_i}{u} - f(u) \le \opt{\f}(v_{1:n}) \tag{Fenchel-Young} \\
+      \opt{\f}(v_{1:n}) \le \sum_{i=1}^n \dotprod{\grad \opt{\f}(v_{1:i-1})}{v_i} +\frac{1}{2\beta} \sum_{i=1}^n \|v_i\|^2
+    \end{align*}
     Induction on the definition of smoothness.
   \end{proof}
 \end{frame}
@@ -155,21 +159,46 @@
   \begin{theorem}
     Let $f$ be a $\beta$-strongly convex function. Define,
   \begin{align*}
-    & \X = \{ x : \|x\|_{*} \le X \} \\
-    & \mathscr{W} = \{w : f(w) \le f_{max}\} \\
-    & \F = \{ x \mapsto \dotprod{w}{x} : w \in \mathscr{W} \} \\
-    & \Rad(\F) \le X\sqrt{\frac{2f_{max}}{\beta n}}
+    & \X = \{ x : \|x\|_{*} \le K \} \tag{$K$ is a constant upper bound}\\
+    & \mathscr{W} = \{w : f(w) \le M\} \\
+    & \F = \{ x \mapsto \dotprod{w}{x} : w \in \mathscr{W} \} \tag{A class of linear functions}\\
   \end{align*}
   \end{theorem}
+\end{frame}
+
+\begin{frame}{Rademacher Bounds}
+  \begin{theorem}
+  \begin{align*}
+    & \Rad_T(\F) \le K\sqrt{\frac{2M}{\beta n}} \\
+  \end{align*}
+  \end{theorem}
+\end{frame}
+
+
+\begin{frame}
+  \begin{proof}
+    \begin{alignat*}{2}
+      & \sup_{w \in \mathscr{W}} \sum_{i=1}^n \dotprod{w}{\epsilon_i \lambda X_i} & \le \frac{\lambda^2}{2\beta}\sum_{i=1}^n \|\epsilon_i \lambda X_i\|_{*}^2 + \sup_{w \in \mathscr{W}} f(w) \\
+      & & + \sum_{i=1}^n \dotprod{\grad \opt{f}(v_{1:i-1})}{\epsilon_i \lambda X_i} \\
+    \end{alignat*}
+    %% \vspace{-10mm}
+  \end{proof}
 \end{frame}
 
 \begin{frame}
   \begin{proof}
     \begin{align*}
-      \sup_{w \in \mathscr{W}} \sum_{i=1}^n \dotprod{w}{\epsilon_i \lambda X_i} & \le \frac{\lambda^2}{2\beta}\sum_{i=1}^n \|\epsilon_i \lambda X_i\|_{*}^2 \\
-      & + \sup_{w \in \mathscr{W}} f(w) \\
-      & + \sum_{i=1}^n \dotprod{\grad \opt{f}(v_{1:i-1})}{\epsilon_i \lambda X_i} \\
-      \Rad(\F) & \le \frac{\lambda X^2}{2\beta} + \frac{f_{max}}{n\lambda}
+      \sup_{w \in \mathscr{W}} \sum_{i=1}^n \dotprod{w}{\epsilon_i \lambda X_i} & \le \frac{\lambda^2 K^2 n}{2\beta} + M \\
+      & + \sum_{i=1}^n \dotprod{\grad \opt{f}(v_{1:i-1})}{\epsilon_i \lambda X_i}
     \end{align*}
   \end{proof}
 \end{frame}
+
+\begin{frame}
+  \begin{proof}
+    \begin{align*}
+      & \Rad(\F) \le \frac{\lambda X^2}{2\beta} + \frac{f_{max}}{n\lambda}
+    \end{align*}
+  \end{proof}
+\end{frame}
+

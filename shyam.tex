@@ -7,6 +7,7 @@
   \item Smoothness
   \end{itemize}
 \end{frame}
+
 \begin{frame}{Strong Convexity}
   Recall a function is convex if,
   \begin{align*} 
@@ -28,6 +29,13 @@
   \begin{align*}
     \f(\alpha \x +(1-\alpha)\y) \le \alpha \f(\x) + (1-\alpha)\f(\y) - \alpha(1-\alpha)\frac{\beta}{2} \|\y-\x\|^2
   \end{align*}
+\end{frame}
+
+\begin{frame}{Strong Convexity}
+  \begin{figure}
+    \includegraphics[scale=0.27]{images/str_convex.png}
+    \caption{From \cite{ShSh2012}}
+  \end{figure}
 \end{frame}
 
 \begin{frame}{Convex Conjugate of a function}
@@ -151,29 +159,38 @@
   \end{align*}
   We can also take expectation over $T$, to obtain,
   \begin{align*}
-  \Rad_n(\F)=\E_{T}\left[\Rad_T(\F)\right]
+    \Rad_n(\F)=\E_{T}\left[\Rad_T(\F)\right]
   \end{align*}
 \end{frame}
 
 \begin{frame}{Rademacher Bounds}
   \begin{theorem}
     Let $f$ be a $\beta$-strongly convex function. Define,
-  \begin{align*}
-    & \X = \{ x : \|x\|_{*} \le K \} \tag{$K$ is a constant upper bound}\\
-    & \mathscr{W} = \{w : f(w) \le M\} \\
-    & \F = \{ x \mapsto \dotprod{w}{x} : w \in \mathscr{W} \} \tag{A class of linear functions}\\
-  \end{align*}
+    \begin{align*}
+      & \X = \{ x : \|x\|_{*} \le K \} \tag{$K$ is a constant upper bound}\\
+      & \mathscr{W} = \{w : f(w) \le M\} \tag{space of parameters}\\
+      & \F = \{ x \mapsto \dotprod{w}{x} : w \in \mathscr{W} \} \tag{A class of linear functions defined over the parameter space}\\
+    \end{align*}
   \end{theorem}
 \end{frame}
 
 \begin{frame}{Rademacher Bounds}
   \begin{theorem}
-  \begin{align*}
-    & \Rad_T(\F) \le K\sqrt{\frac{2M}{\beta n}} \\
-  \end{align*}
+    For any $T \in \X^n$, for the function class $\F$, we have
+    \begin{align*}
+      & \Rad_T(\F) \le K\sqrt{\frac{2M}{\beta n}} \\
+    \end{align*}
   \end{theorem}
 \end{frame}
 
+\begin{frame}
+  \begin{proof}
+    \begin{align*}
+      \sum_{i=1}^n \dotprod{v_i}{u} - f(u) \le \frac{1}{2\beta} \sum_{i=1}^n \|v_i\|^2 + \sum_{i=1}^n \dotprod{\grad \opt{\f}(v_{1:i-1})}{v_i}
+    \end{align*}
+    $v_i=\lambda\epsilon_i X_i,u=w$, and taking $\sup_{w \in \mathscr{W}}$,
+  \end{proof}
+\end{frame}
 
 \begin{frame}
   \begin{proof}
@@ -181,7 +198,6 @@
       & \sup_{w \in \mathscr{W}} \sum_{i=1}^n \dotprod{w}{\epsilon_i \lambda X_i} & \le \frac{\lambda^2}{2\beta}\sum_{i=1}^n \|\epsilon_i \lambda X_i\|_{*}^2 + \sup_{w \in \mathscr{W}} f(w) \\
       & & + \sum_{i=1}^n \dotprod{\grad \opt{f}(v_{1:i-1})}{\epsilon_i \lambda X_i} \\
     \end{alignat*}
-    %% \vspace{-10mm}
   \end{proof}
 \end{frame}
 
@@ -194,10 +210,13 @@
   \end{proof}
 \end{frame}
 
+
 \begin{frame}
   \begin{proof}
+    Taking expectation of both sides we get,
     \begin{align*}
-      & \Rad(\F) \le \frac{\lambda X^2}{2\beta} + \frac{f_{max}}{n\lambda}
+      & n\lambda\Rad_T(\F) \le \frac{\lambda^2 K^2 n}{2\beta} + M + 0\\
+      & \Rad_T(\F) \le \frac{\lambda K^2}{2\beta} + \frac{M}{n\lambda}
     \end{align*}
   \end{proof}
 \end{frame}

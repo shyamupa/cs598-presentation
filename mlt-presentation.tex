@@ -9,8 +9,42 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
+\usepackage{algpseudocode} % uses algorithmicx package automatically
+\usepackage{mathrsfs}
+\usepackage{graphicx}
+\DeclareMathOperator*{\argmin}{\mathbf{arg\,min}}
+\DeclareMathOperator*{\argmax}{\mathbf{arg\,max}}
+%\DeclareMathOperator*{\sup}{sup}
+\DeclareMathOperator{\F}{\mathscr{F}} % Function Classes
+%\DeclareMathOperator{\H}{\mathscr{H}} % Hilbert Spaces
+\DeclareMathOperator{\R}{\mathbb{R}} % Reals
+\DeclareMathOperator{\Rad}{\mathscr{R}} % Rademacher
+\DeclareMathOperator{\E}{\mathbb{E}} % Expectation
+\DeclareMathOperator{\Or}{\mathcal{O}} % Order Notation
+\DeclareMathOperator{\Tr}{\textbf{Tr}} % Expectation
+\DeclareMathOperator{\grad}{\nabla} % Gradient
+\DeclareMathOperator{\LLH}{\mathcal{L}} % Log Likelihood etc.
+\DeclareMathOperator{\Lag}{\mathcal{L}} % Lagrangian etc.
+\DeclareMathOperator{\X}{\mathcal{X}} % input space X
+\DeclareMathOperator{\Y}{\mathcal{Y}} % output space Y
+\DeclareMathOperator{\bF}{\mathbf{F}} 
+\DeclareMathOperator{\w}{\mathbf{w}} % weight vector
+\DeclareMathOperator{\y}{\mathbf{y}} % output structure
+\DeclareMathOperator{\x}{\mathbf{x}} % input structure
+\DeclareMathOperator{\f}{\mathbf{f}} % function
+%\DeclareMathOperator{\implies}{\rightarrow} % implies
 
-\author{}
+\newcommand{\opt}[1]{{#1}^{*}} % give f* for Optimal, Dual ...
+\newcommand{\pred}[1]{\hat{#1}} % Prediction 
+\newcommand{\dotprod}[2]{ \langle {#1} , {#2} \rangle } % <w,x> style
+\renewcommand{\Pr}{\mathbb{P}} % Probability
+\renewcommand{\vec}[1]{\mathbf{#1}} % vectors
+
+\newcommand*{\Let}[2]{\State {#1} $\gets$ {#2}}
+
+\author{Shyam Upadhyay (upadhya3), Adam Vollrath (vollrat2), Stephen Mayhew (mayhew2)}
+
+
 \title{On the duality of strong convexity and strong smoothness: Learning applications and matrix regularization}
 
 \setbeamercovered{transparent} 
@@ -28,11 +62,7 @@
 %\tableofcontents
 %\end{frame}
 
-\begin{frame}{Introduction and definitions}
-
-Shyam
-
-\end{frame}
+\input{shyam.tex}
 
 \begin{frame}{Group Lasso}
 
@@ -43,6 +73,12 @@ Adam
 \begin{frame}{Kernel Methods}
 Stephen
 
+\end{frame}
+
+\begin{frame}[allowframebreaks]{References}
+  \def\newblock{}
+  \bibliographystyle{plain}
+  \bibliography{mlt-presentation.bib}
 \end{frame}
 
 \end{document}

@@ -1,4 +1,11 @@
-\begin{frame}{Introduction and definitions}
+%% \section[Quick Recall of Convexity]{Quick Recall of Convexity}
+
+%% \begin{frame}
+%%   \frametitle{Table of Contents}
+%%   \tableofcontents[currentsection]
+%% \end{frame}
+
+\begin{frame}{Quick Recall of Convexity}
   \begin{itemize}
   \item Strong Convexity
   \item Sub-differential (sub-gradient)
@@ -34,22 +41,30 @@
 \begin{frame}{Strong Convexity}
   \begin{figure}
     \includegraphics[scale=0.27]{images/str_convex.png}
-    \caption{From \cite{ShSh2012}}
+    \caption{From \cite{ShSh2012}. A $\sigma$ strongly convex function.}
   \end{figure}
 \end{frame}
 
-\begin{frame}{Convex Conjugate of a function}
-  Also called Fenchel Conjugate of a function.
+
+\begin{frame}{Convex Conjugate}
+  (Also called Fenchel Conjugate)\\
+  {\bf Idea:} There is a unique tangent to a convex function of a given slope $\y$. Therefore, a convex function can be uniquely represented by $(x,f(x))$ or alternatively by (slope,intercept with y-axis).
+  \begin{definition}
+    The convex conjugate of a function $\f$, denote by $\opt{\f}$ is defined as,
+    \begin{align*}
+      \opt{\f}(\y) = \max_x \dotprod{\x}{\y} - \f(\x)
+    \end{align*}
+    $\opt{\f}(\y)$ answers the question:``what is the intercept of the tangent to $\f$ which has slope $\y$?''
+  \end{definition}
+  Note that $\opt{\f}(\y)$ will be unique and convex.
+\end{frame}
+
+
+\begin{frame}{Convex Conjugate}
   \begin{figure}
     \includegraphics[scale=0.27]{images/fenchel.png}
     \caption{From \cite{ShSh2012}}
   \end{figure}
-\end{frame}
-
-\begin{frame}{Convex Conjugate}
-  \begin{align*}
-    \opt{\f}(\y) = \max_x \dotprod{\x}{\y} - \f(\x)
-  \end{align*}
 \end{frame}
 
 \begin{frame}{Dual Norm}
@@ -92,14 +107,14 @@
       \sum_{i=1}^n \dotprod{v_i}{u} - f(u) \le \opt{\f}(v_{1:n}) \le \sum_{i=1}^n \dotprod{\grad \opt{\f}(v_{1:i-1})}{v_i} +\frac{1}{2\beta} \sum_{i=1}^n \|v_i\|^2
     \end{align*}
   \end{lemma}
-  \begin{proof}
     \begin{align*}
       \sum_{i=1}^n \dotprod{v_i}{u} - f(u) \le \opt{\f}(v_{1:n}) \tag{Fenchel-Young} \\
       \opt{\f}(v_{1:n}) \le \sum_{i=1}^n \dotprod{\grad \opt{\f}(v_{1:i-1})}{v_i} +\frac{1}{2\beta} \sum_{i=1}^n \|v_i\|^2
     \end{align*}
     Induction on the definition of smoothness.
-  \end{proof}
 \end{frame}
+
+%% \section[]{Follow the Regularized Leader}
 
 \begin{frame}{Follow the Regularized Leader}
   \begin{algorithmic}
@@ -125,30 +140,20 @@
 \end{frame}
 
 \begin{frame}
-  \begin{proof}
     \begin{align*}    
       & l_t(w_t) - l_t(u) \le \dotprod{v_t}{w_t - u} \tag{convexity} \\
       & -\eta\sum_{t=1}^T \dotprod{v_t}{u} -f(u) \le -\eta\sum_{t=1}^T \dotprod{v_t}{w_t} +\frac{1}{2\beta} \sum_{t=1}^T \|\eta v_t\|_{*}^2 \\
+      & \|v_t\|_{*} \le V \tag{$v_t \in \partial l_t(w_t)$ and $l_t$ is V-Lipshitz} \\
+      & -\eta\sum_{t=1}^T \dotprod{v_t}{u} -f(u) \le -\eta\sum_{t=1}^T \dotprod{v_t}{w_t} +\frac{\eta V^2T}{2\beta} \\
     \end{align*}
-  \end{proof}
 \end{frame}
 
 \begin{frame}
-  \begin{proof}
     \begin{align*}    
-      & \|v_t\|_{*} \le V \tag{$v_t \in \partial l_t(w_t)$ and $l_t$ is V-Lipshitz} \\
-      & -\eta\sum_{t=1}^T \dotprod{v_t}{u} -f(u) \le -\eta\sum_{t=1}^T \dotprod{v_t}{w_t} +\frac{\eta V^2T}{2\beta} \\
       & \sum_{t=1}^T \dotprod{v_t}{w_t - u} \le \frac{\eta V^2T}{2\beta} + \frac{f(u)}{\eta} \\
-    \end{align*}  
-  \end{proof}
-\end{frame}
-\begin{frame}
-  \begin{proof}
-    \begin{align*}    
       & \sum_{t=1}^T l_t(w_t) - \sum_{t=1}^T l_t(u) \le \sum_{t=1}^T \dotprod{v_t}{w_t - u} \le \frac{\eta V^2T}{2\beta} + \frac{f(u)}{\eta} \\
       & \max_{u \in S} \sum_{t=1}^T l_t(w_t) - \sum_{t=1}^T l_t(u) \le \max_{u \in S} \frac{\eta V^2T}{2\beta} + \frac{f(u)}{\eta}
     \end{align*}  
-  \end{proof}
 \end{frame}
 
 
@@ -184,40 +189,24 @@
 \end{frame}
 
 \begin{frame}
-  \begin{proof}
     \begin{align*}
       \sum_{i=1}^n \dotprod{v_i}{u} - f(u) \le \frac{1}{2\beta} \sum_{i=1}^n \|v_i\|^2 + \sum_{i=1}^n \dotprod{\grad \opt{\f}(v_{1:i-1})}{v_i}
     \end{align*}
     $v_i=\lambda\epsilon_i X_i,u=w$, and taking $\sup_{w \in \mathscr{W}}$,
-  \end{proof}
-\end{frame}
-
-\begin{frame}
-  \begin{proof}
     \begin{alignat*}{2}
       & \sup_{w \in \mathscr{W}} \sum_{i=1}^n \dotprod{w}{\epsilon_i \lambda X_i} & \le \frac{\lambda^2}{2\beta}\sum_{i=1}^n \|\epsilon_i \lambda X_i\|_{*}^2 + \sup_{w \in \mathscr{W}} f(w) \\
-      & & + \sum_{i=1}^n \dotprod{\grad \opt{f}(v_{1:i-1})}{\epsilon_i \lambda X_i} \\
+      & & + \sum_{i=1}^n \dotprod{\grad \opt{f}(v_{1:i-1})}{\epsilon_i \lambda X_i}
     \end{alignat*}
-  \end{proof}
 \end{frame}
 
 \begin{frame}
-  \begin{proof}
     \begin{align*}
       \sup_{w \in \mathscr{W}} \sum_{i=1}^n \dotprod{w}{\epsilon_i \lambda X_i} & \le \frac{\lambda^2 K^2 n}{2\beta} + M \\
       & + \sum_{i=1}^n \dotprod{\grad \opt{f}(v_{1:i-1})}{\epsilon_i \lambda X_i}
     \end{align*}
-  \end{proof}
-\end{frame}
-
-
-\begin{frame}
-  \begin{proof}
     Taking expectation of both sides we get,
     \begin{align*}
       & n\lambda\Rad_T(\F) \le \frac{\lambda^2 K^2 n}{2\beta} + M + 0\\
       & \Rad_T(\F) \le \frac{\lambda K^2}{2\beta} + \frac{M}{n\lambda}
     \end{align*}
-  \end{proof}
 \end{frame}
-

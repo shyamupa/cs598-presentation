@@ -28,14 +28,14 @@
 \end{frame}
 
 \begin{frame}{Strong Convexity}
-  A function is said to be $\beta$ strongly convex if,
+  A function $\f$ is said to be $\beta$ strongly convex if,
   \begin{align*}
     \f(\x+\y) \ge \underbrace{\f(\x) + \dotprod{\grad \f(\x)}{\y}}_{\text{the value of the tangent}} +\frac{\beta}{2} \|\y\|^2
   \end{align*}
-  Equivalently,
-  \begin{align*}
-    \f(\alpha \x +(1-\alpha)\y) \le \alpha \f(\x) + (1-\alpha)\f(\y) - \alpha(1-\alpha)\frac{\beta}{2} \|\y-\x\|^2
-  \end{align*}
+  %% Equivalently,
+  %% \begin{align*}
+  %%   \f(\alpha \x +(1-\alpha)\y) \le \alpha \f(\x) + (1-\alpha)\f(\y) - \alpha(1-\alpha)\frac{\beta}{2} \|\y-\x\|^2
+  %% \end{align*}
 \end{frame}
 
 \begin{frame}{Strong Convexity}

@@ -1,0 +1,39 @@
+\begin{frame}{Kernel Methods}
+
+  We follow the definition of learning kernels in Lanckriet et al. \cite{lanckriet2004learning}.
+
+  Basically, choose a set of kernels $\{K_1, K_2, \cdots K_k\}$ somehow (lankriet et al discuss this) and combine them in a linear fashion.
+
+  Learning problem is to learn the coefficients in the linear combination. 
+
+\end{frame}
+
+
+\begin{frame}{Class to consider}
+
+  \begin{multline}
+    \F_{\K^+_c} = \{ \mathbf{x} \mapsto \sum_{i=1}^n \boldsymbol\alpha_i K(\mathbf{x}_i, \cdot) : \\
+    K = \sum_{j=1}^k \mu_j K_j, \\
+    \mu_j \geq 0,\\
+    \sum_{j=1}^k \mu_j = 1, \\
+    \boldsymbol\alpha^T K(T) \boldsymbol\alpha < 1 / \gamma^2 \\
+    \} 
+  \end{multline}
+  
+\end{frame}
+
+\begin{frame}{Actual bound}
+
+  Rademacher bounds.
+
+  \[ \Rad_T(\F_{\K^+_c}) \leq e \sqrt{\frac{B \log k}{\gamma^2 n}} \]
+
+  Nice because bound on $k$ is logarithmic: we can use a large number of base kernels!
+  
+\end{frame}
+
+\begin{frame}{Proof}
+
+  Not sure I can do this justice. We use the duality though...
+  
+\end{frame}

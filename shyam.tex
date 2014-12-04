@@ -8,7 +8,7 @@
 \begin{frame}{Quick Recall of Convexity}
   \begin{itemize}
   \item Strong Convexity
-  \item Sub-differential (sub-gradient)
+  %% \item Sub-differential (sub-gradient)
   \item Convex Conjugate
   \item Dual Norm
   \item Smoothness
@@ -28,14 +28,14 @@
 \end{frame}
 
 \begin{frame}{Strong Convexity}
-  A function is said to be $\beta$ strongly convex if,
+  A function $\f$ is said to be $\beta$ strongly convex if,
   \begin{align*}
     \f(\x+\y) \ge \underbrace{\f(\x) + \dotprod{\grad \f(\x)}{\y}}_{\text{the value of the tangent}} +\frac{\beta}{2} \|\y\|^2
   \end{align*}
-  Equivalently,
-  \begin{align*}
-    \f(\alpha \x +(1-\alpha)\y) \le \alpha \f(\x) + (1-\alpha)\f(\y) - \alpha(1-\alpha)\frac{\beta}{2} \|\y-\x\|^2
-  \end{align*}
+  %% Equivalently,
+  %% \begin{align*}
+  %%   \f(\alpha \x +(1-\alpha)\y) \le \alpha \f(\x) + (1-\alpha)\f(\y) - \alpha(1-\alpha)\frac{\beta}{2} \|\y-\x\|^2
+  %% \end{align*}
 \end{frame}
 
 \begin{frame}{Strong Convexity}
@@ -67,6 +67,13 @@
   \end{figure}
 \end{frame}
 
+\begin{frame}{Fenchel Young Inequality}
+  From the definition of fenchel conjugate, we have the following inequality,
+  \begin{align*}
+    \f(\x) + \opt{\f(\y)} \ge \dotprod{\x}{\y}
+  \end{align*}
+\end{frame}
+
 \begin{frame}{Dual Norm}
   \begin{align*}
     \|y\|_{*} = \sup\{\dotprod{x}{y} : \|x\| \le 1\}
@@ -88,7 +95,7 @@
   \begin{align*}
     \f(\x+\y) \le \f(\x) + \dotprod{\grad \f(\x)}{\y} +\frac{\beta}{2} \|\y\|^2
   \end{align*}
-  Note the difference from strong convexity.
+  Note the difference in direction of inequality from strong convexity.
 \end{frame}
 
 \begin{frame}{Strong/Smoothness Duality}
@@ -102,18 +109,21 @@
 
 \begin{frame}{A Useful Lemma}
   \begin{lemma}
-    If $\f$ is $\beta$ strong convex,
+    If $\f$ is $\beta$ strong convex wrt $\|.\|$ and $\opt{\f}(0)=0$, then for any sequence $v_1,v_2,...,v_n$ and any $u$, we have,
     \begin{align*}
-      \sum_{i=1}^n \dotprod{v_i}{u} - f(u) \le \opt{\f}(v_{1:n}) \le \sum_{i=1}^n \dotprod{\grad \opt{\f}(v_{1:i-1})}{v_i} +\frac{1}{2\beta} \sum_{i=1}^n \|v_i\|^2
+      \sum_{i=1}^n \dotprod{v_i}{u} - f(u) \le \opt{\f}(v_{1:n}) \le \sum_{i=1}^n \dotprod{\grad \opt{\f}(v_{1:i-1})}{v_i} +\frac{1}{2\beta} \sum_{i=1}^n \|v_i\|_{*}^2
     \end{align*}
+    where $v_{1:n}=\sum_1^n v_i$.
   \end{lemma}
+\end{frame}
+
+\begin{frame}
     \begin{align*}
-      \sum_{i=1}^n \dotprod{v_i}{u} - f(u) \le \opt{\f}(v_{1:n}) \tag{Fenchel-Young} \\
-      \opt{\f}(v_{1:n}) \le \sum_{i=1}^n \dotprod{\grad \opt{\f}(v_{1:i-1})}{v_i} +\frac{1}{2\beta} \sum_{i=1}^n \|v_i\|^2
+      & \sum_{i=1}^n \dotprod{v_i}{u} - f(u) \le \opt{\f}(v_{1:n}) \tag{Fenchel-Young} \\
+      & \opt{\f}(v_{1:n}) \le \sum_{i=1}^n \dotprod{\grad \opt{\f}(v_{1:i-1})}{v_i} +\frac{1}{2\beta} \sum_{i=1}^n \|v_i\|_{*}^2
     \end{align*}
     Induction on the definition of smoothness.
 \end{frame}
-
 %% \section[]{Follow the Regularized Leader}
 
 \begin{frame}{Follow the Regularized Leader}

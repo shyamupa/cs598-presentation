@@ -1,0 +1,72 @@
+%% Adam Vollrath's part of the presentation.
+
+
+\begin{frame}{Group Lasso}
+Let  $X = (X_1, \dots, X_d)$ be an $k \times d$ real matrix with columns
+$X_i \in \R^k$. The group Lasso, $\|X\|_{2,1}$, is the $L_1$-norm of the $L_2$-norms of
+the columns:
+%\[|(\|X_1\|_2, \dots, \|X_n\|_2)\|_1;\]
+\[\sum_{i = 0}^d \|X_i\|_2.\]
+%\vspace{0.2in}
+This is useful in learning matrices, $W \in \R^{k \times d}$, where the objective function is
+\[ \min_W \frac{1}{n} \sum_{i=1}^n \|\y_i - W\x_i\|_2^2 + \lambda \|W\|_{2,1}.\]
+\end{frame}
+
+
+\begin{frame}
+\begin{theorem}
+Let the distribution of $\x \in \R^d$ and $\y \in \R^k$ be such that
+$\|\x\|_\infty \le X_\infty$ and $\|\y\|_2 \le Y_2$ almost surely.
+Then for the function class
+\[\F = \{(\x, \y) \mapsto \|\y - W\x\|_2^2 : \|W\|_{2,1} \le \bar{W}_{2,1}\}\]
+for some $W \in \R^{k \times d}$ and $\bar{W}_{2,1} > 0$, we have
+\[\Rad_n(\F) \le \frac{(Y_2 + e\bar{W}_{2,1} X_\infty \sqrt{\log d})^2}{\sqrt{n}}.\]
+\end{theorem}
+%If only $q$ shared weights matter, 
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Proof}
+\begin{align*}
+\|\y - W\x\|_2^2 &= \y^T \y - 2 \y^T W \x + \x^T W^T W \x \\
+   &= \y^T \y - 2 Tr(\y^T W \x) + Tr(\x^T W^T W \x) \\
+   &= \y^T \y - 2 Tr(\x \y^T W) + Tr(W^T W \x \x^T) \\
+   &= \y^T \y - 2\langle \y \x^T, W\rangle + \langle W^TW, \x \x^T\rangle
+\end{align*}
+Consider the function classes
+\begin{align*}
+\F_1 &= \{(\x, \y) \mapsto 2\langle W, \y\x^T\rangle : \|W\|_{2,1} \le \bar{W}_{2,1}\} \\
+\F_2 &= \{(\x, \y) \mapsto 2\langle W^T W, \y\x^T\rangle : \|W\|_{2,1} \le \bar{W}_{2,1}\}
+\end{align*}
+Can show $\Rad_n(\F_1) \le \Rad_n(F_1) + \Rad_n(F)$.
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Proof Continued ($\Rad_n(\F_1)$ Upper Bound)}
+If $r \in (1,2]$ and $1/r + 1/s = 1$ then $\frac{1}{2} \| \cdot \|_{2,s}^2$ is $s$-smooth and so
+its conjugate $\frac{1}{2}\| \cdot \|_{2,r}^2$ is $1/s$-strongly convex. So,
+setting $f(W) = \frac{1}{2}\|W\|_{2,r}^2$ and $\| \cdot \| = \| \cdot \|_{2,r}$ in 
+the previous theorem gives
+\[\Rad_n(\F_1) \le 2\|y\x^T\|_{2,s}\bar{W}_{2,1}\sqrt{\frac{s}{n}} \le 
+   2d^{1/s}Y_2X_\infty \bar{W}_{2,1}\sqrt{\frac{s}{n}}.\]
+Set $s = \log d$ to get
+\[\Rad_n(\F_1) \le 2eY_2X_\infty \bar{W}_{2,1}\sqrt{\frac{\log d}{n}}.\]
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Proof Continued ($\Rad_n(\F_2)$ Upper Bound)}
+For $\F_2$,
+\begin{align*}
+\|W^TW\|_{1,1,} &= \sum_{i,j} |\langle W_{\cdot,i},   W_{\cdot,j}\rangle| \\
+  &\le \sum_{i,j} \|W_{\cdot,i}\|_2 \cdot \|W_{\cdot,j}\|_2 \\
+  &= \sum_i \|W_{\cdot,i}\|_2 \cdot \sum_j \|W_{\cdot,j}\|_2 \\
+  &= \|W\|_{2,1}^2
+\end{align*}
+Using Kakade et al. [2008] and $\|\x\x^T\|_{\infty,\infty}$ gives
+\[\Rad_n(\F_2) \le X_\infty^2 \bar{W}_{2,1}^2 \sqrt{\frac{2\log d}{n}}.\]
+\end{frame}
+
+

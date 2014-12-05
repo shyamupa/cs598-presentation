@@ -159,7 +159,6 @@
     \State Receive $l_t$ and pick $v_t \in \partial l_t(w_t)$
     \State Update,
     \Let{$w_{t+1}$}{$\grad \opt{f}(-\eta \sum_{s=1}^{t} v_s)$} 
-    %% \Let{$w_{t+1}$}{$\argmin_{w} \dotprod{w}{-\eta \sum_{s=1}^{t} v_s}+f(w)$}
     \EndFor
   \end{algorithmic}
   \caption{The Algorithm}

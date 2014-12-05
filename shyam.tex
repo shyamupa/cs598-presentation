@@ -11,7 +11,7 @@
   %% \item Sub-differential (sub-gradient)
   \item Convex Conjugate
   \item Dual Norm
-  \item Smoothness
+  \item Strong Smoothness
   \end{itemize}
 \end{frame}
 
@@ -28,7 +28,7 @@
 \end{frame}
 
 \begin{frame}{Strong Convexity}
-  A function $\f$ is said to be $\beta$ strongly convex (wrt norm $\|\|$) if,
+  A function $\f$ is said to be $\beta$-strongly convex (wrt norm $\|\|$) if,
   \begin{align*}
    & \f(\y) \ge \underbrace{\f(\x) + \dotprod{\grad \f(\x)}{\y-\x}}_{\text{the value at $\y$ of the tangent at $\x$}} + \frac{\beta}{2} \|\y-\x\|^2\\
    %% & \text{Substituting x+y for y,} \\
@@ -75,7 +75,7 @@
     \begin{align*}
     \nabla \opt{\f}(\y) = \argmax_{\x}\dotprod{\x}{\y} - \f(\x)
   \end{align*}  
-  \item From the definition of fenchel conjugate, we have the following inequality,
+  \item From the definition of Fenchel conjugate, we have the following inequality,
     \begin{align*}
       \f(\x) + \opt{\f}(\y) \ge \dotprod{\x}{\y} \tag{Fenchel Young Inequality}
     \end{align*}
@@ -84,7 +84,7 @@
 \end{frame}
 
 \begin{frame}{Dual Norm}
-  The dual norm of the norm $\|\|$ is given by
+  The dual norm of the norm $\| \cdot \|$ is given by
   \begin{align*}
     \|y\|_{*} = \sup\{\dotprod{x}{y} : \|x\| \le 1\}
   \end{align*}
@@ -100,26 +100,26 @@
       \end{center}
 \end{frame}
 
-\begin{frame}{Smoothness}
-  A function is said to be $\beta$ smooth (wrt norm $\|\|$) if,
+\begin{frame}{Strong Smoothness}
+  A function is said to be $\beta$-strongly smooth (wrt norm $\| \cdot \|$) if,
   \begin{align*}
     \f(\x+\y) \le \f(\x) + \dotprod{\grad \f(\x)}{\y} +\frac{\beta}{2} \|\y\|^2
   \end{align*}
   Note the difference in direction of inequality from strong convexity.
 \end{frame}
 
-\begin{frame}{Strong Convexity/Smoothness Duality}
-  \begin{theorem}
-    Assume $\f$ is closed and convex function. Then
+\begin{frame}{Strong Convexity/Strong Smoothness Duality}
+  \begin{theorem}[6]
+    Assume $\f$ is a closed and convex function. Then
     \begin{align*}
-      \f \text{ is } \beta\text{-strongly convex wrt }  \|\| \iff \opt{\f} \text{ is } \frac{1}{\beta}\text{-smooth wrt }  \|\|_{*}
+      \f \text{ is } \beta\text{-strongly convex wrt }  \| \cdot \| \iff \opt{\f} \text{ is } \frac{1}{\beta}\text{-smooth wrt }  \| \cdot \|_{*}
     \end{align*}
   \end{theorem}
 \end{frame}
 
 \begin{frame}{A Useful Lemma}
   \begin{lemma}
-    If $\f$ is $\beta$ strong convex wrt $\|.\|$ and $\opt{\f}(0)=0$, then for any sequence $v_1,v_2,...,v_n$ and any $u$, we have,
+    If $\f$ is $\beta$ strong convex wrt $\|\cdot\|$ and $\opt{\f}(0)=0$, then for any sequence $v_1,v_2,...,v_n$ and any $u$, we have,
     \begin{align*}
       \sum_{i=1}^n \dotprod{v_i}{u} - f(u) \le \opt{\f}(v_{1:n}) \le \sum_{i=1}^n \dotprod{\grad \opt{\f}(v_{1:i-1})}{v_i} +\frac{1}{2\beta} \sum_{i=1}^n \|v_i\|_{*}^2
     \end{align*}

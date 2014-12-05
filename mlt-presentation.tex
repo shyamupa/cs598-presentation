@@ -1,5 +1,7 @@
 \documentclass[11pt]{beamer}
 
+\usepackage{color,soul}
+
 \mode<presentation>
 {
   \usetheme{UIUC}
@@ -16,7 +18,8 @@
 \DeclareMathOperator*{\argmax}{\mathbf{arg\,max}}
 %\DeclareMathOperator*{\sup}{sup}
 \DeclareMathOperator{\F}{\mathscr{F}} % Function Classes
-%\DeclareMathOperator{\H}{\mathscr{H}} % Hilbert Spaces
+\DeclareMathOperator{\FF}{\mathcal{F}} % prettier function classes
+\DeclareMathOperator{\Hs}{\mathscr{H}} % Hilbert Spaces
 \DeclareMathOperator{\R}{\mathbb{R}} % Reals
 \DeclareMathOperator{\Rad}{\mathscr{R}} % Rademacher
 \DeclareMathOperator{\E}{\mathbb{E}} % Expectation
@@ -33,6 +36,8 @@
 \DeclareMathOperator{\x}{\mathbf{x}} % input structure
 \DeclareMathOperator{\f}{\mathbf{f}} % function
 \DeclareMathOperator{\K}{\mathscr{K}} % set of Kernels
+\DeclareMathOperator{\vw}{\overrightarrow{w}} % set of Kernels
+
 %\DeclareMathOperator{\implies}{\rightarrow} % implies
 
 \newcommand{\opt}[1]{{#1}^{*}} % give f* for Optimal, Dual ...
@@ -42,6 +47,11 @@
 \renewcommand{\vec}[1]{\mathbf{#1}} % vectors
 
 \newcommand*{\Let}[2]{\State {#1} $\gets$ {#2}}
+
+\usepackage{xcolor}
+
+\newcommand{\highlight}[1]{\colorbox{yellow}{$\displaystyle #1$}}
+\newcommand{\highlightmath}[1]{\colorbox{yellow}{\[\displaystyle #1\]}}
 
 \author{Sham M. Kakade, Shai Shalev-Shwartz, Ambuj Tewari \newline Toyota Technological Institute-Chicago}
 

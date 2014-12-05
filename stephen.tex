@@ -1,10 +1,12 @@
-\begin{frame}{Kernel Methods}
+\begin{frame}{Kernel Learning}
 
-  We follow the definition of learning kernels in Lanckriet et al. \cite{lanckriet2004learning}.
+  We follow the definition of learning kernels given in Lanckriet et al. \cite{lanckriet2004learning}.
 
-  Basically, choose a set of kernels $\{K_1, K_2, \cdots K_k\}$ somehow (lankriet et al discuss this) and combine them in a linear fashion.
+  Choose a set of kernels $\{K_1, K_2, \cdots K_k\}$, and consider convex combinations:
 
-  Learning problem is to learn the coefficients in the linear combination. 
+  \[ \mathcal{K}^+_c = \left\{ \sum^k_{j=1} \mu_j K_j ~:~ \mu_j \geq 0, \sum^k_{j=1} \mu_j = 1 \right\}  \]
+
+  We want to learn the $\mu_j$ parameters. 
 
 \end{frame}
 
@@ -12,28 +14,131 @@
 \begin{frame}{Class to consider}
 
   \begin{multline}
-    \F_{\K^+_c} = \{ \mathbf{x} \mapsto \sum_{i=1}^n \boldsymbol\alpha_i K(\mathbf{x}_i, \cdot) : \\
+    \mathcal{F}_{\mathcal{K}^+_c} = \{ \mathbf{x} \mapsto \sum_{i=1}^n \alpha_i K(\mathbf{x}_i, \cdot) : \\
     K = \sum_{j=1}^k \mu_j K_j, \\
     \mu_j \geq 0,\\
     \sum_{j=1}^k \mu_j = 1, \\
-    \boldsymbol\alpha^T K(T) \boldsymbol\alpha < 1 / \gamma^2 \\
+    \boldsymbol\alpha^T K(\mathcal{T}) \boldsymbol\alpha \leq 1 / \gamma^2 \\
     \} 
   \end{multline}
   
 \end{frame}
 
-\begin{frame}{Actual bound}
+\begin{frame}{Rademacher complexity}
 
-  Rademacher bounds.
 
-  \[ \Rad_T(\F_{\K^+_c}) \leq e \sqrt{\frac{B \log k}{\gamma^2 n}} \]
-
-  Nice because bound on $k$ is logarithmic: we can use a large number of base kernels!
+  \begin{theorem}[21, Kernel Learning]
+    Consider the class $\mathcal{F}_{\mathcal{K}^+_c}$ defined above. Let $K_j(\x,\x) \leq B$ for $1 \leq j \leq k$ and $\x \in \X$. Then
+    \[ \Rad_{\mathcal{T}}(\mathcal{F}_{\mathcal{K}^+_c}) \leq e \sqrt{\frac{B \log k}{\gamma^2 n}} \]
+  \end{theorem}
+  
+  Bound on $k$ is logarithmic: we can use a large number of base kernels!
   
 \end{frame}
 
+
 \begin{frame}{Proof}
 
-  Not sure I can do this justice. We use the duality though...
+  \begin{theorem}[9 Generalization]
+    Lef $f$ be a $\beta$-strongly convex function w.r.t. a norm $\|\cdot \|$ on $S$ such that
+    $f^*(\mathbf{0}) = 0$. Let $\X = \{ x : \|x\|_* \leq X\}$ and $\mathcal{W} = \{ w : f(w) \leq f_{max} \}$.
+    Consider the class of linear functions,
+
+    \[ \mathcal{F} = \{ x \mapsto \langle w,x \rangle : w \in \mathcal{W} \}  \]
+
+    Then, for any dataset $\mathcal{T} \in \X^n$, we have
+
+    \[ \Rad_{\mathcal{T}}(\mathcal{F}) \leq X \sqrt{ \frac{2f_{max}}{\beta n}  } \]
+  \end{theorem}
+      
+
   
+\end{frame}
+
+\begin{frame}{Filling in the blanks...}
+
+  First condition:
+  
+  \[ \X = \{ x ~:~ \|x\|_* \leq X\} \]
+
+  Satisfied by:
+
+  \[ \X = \{ x ~:~ \|\phi(x)\|_{2,s} \leq k^{1/s} \sqrt{B}\} \]
+
+  
+\end{frame}
+
+\begin{frame}{Filling in the blanks...}
+
+  Second condition:
+
+  \[ \mathcal{W} = \{ w : f(w) \leq f_{max} \}  \]
+
+  Satisfied by:
+  
+  \[ \mathcal{W} = \{ \vw ~:~ \| \vw\|^2_{2,r} \leq 1/\gamma^2 \}  \]
+  
+\end{frame}
+
+
+\begin{frame}{Filling in the blanks...}
+
+  And this class of functions?
+  
+  \[ \mathcal{F} = \{ x \mapsto \langle w,x \rangle : w \in \mathcal{W} \}  \]
+
+  We can say: $ \FF_{\mathcal{K}^+_c} \subseteq \FF_r $ for
+
+  \[ \FF_r := \{ \x \mapsto \langle \vw, \phi(\x) \rangle ~:~ \vw \in \Hs, ~ \| \vw \|_{2,r} \leq 1/\gamma \} \]
+  
+  
+\end{frame}
+
+
+
+\begin{frame}{Where are we?}
+
+  \begin{theorem}[9 Generalization]
+    Lef \highlight{f} be a $\beta$-strongly convex function w.r.t. a norm $\|\cdot \|$ on $S$ such that
+    $f^*(\mathbf{0}) = 0$. \highlight{\X = \{ x : \|x\|_* \leq X\}} and \highlight{\mathcal{W} = \{ w : f(w) \leq f_{max} \}}.
+    Consider the class of linear functions,
+
+    \[ \mathcal{F} = \{ x \mapsto \langle w,x \rangle : w \in \mathcal{W} \}\]
+
+    Then, for any dataset $\mathcal{T} \in \X^n$, we have
+
+    \[ \Rad_{\mathcal{T}}(\mathcal{F}) \leq X \sqrt{ \frac{2f_{max}}{\beta n}  } \]
+  \end{theorem}
+      
+\end{frame}
+
+
+\begin{frame}{Last condition...}
+
+  Finally, we need to show that $f$ is $\beta$-strongly convex. By
+  
+  \begin{corollary}[19]
+  Let $q,s \geq 2$. The function $\frac{1}{2}\|\cdot \|^2_{q,s}$ is $(q+s-2)$-smooth w.r.t. $\|\cdot \|_{q,s}$ on $\R^{m \times n}$.
+  \end{corollary}
+  
+  we know that $\frac{1}{2} \| \cdot \|^2_{2,s}$ is $s$-smooth. Thus, by Theorem 6, its conjugate, $\| \cdot \|_{2,r}^2$, is $1/s$-strongly convex. 
+
+  \vspace*{0.5cm}
+  
+  That is, $f = \| \vw\|^2_{2,r}$, and is $1/s$-strongly convex.
+
+  
+\end{frame}
+
+
+\begin{frame}{Plug and Chug}
+
+  Substitute $X = k^{1/s}\sqrt{B}, f_{max} = \frac{1}{2}\gamma^2, \beta = 1/s$ into 
+
+    \[ \Rad_{\mathcal{T}}(\mathcal{F}) \leq X \sqrt{ \frac{2f_{max}}{\beta n}  } \]
+
+    And we have:
+
+    \[ \Rad_{\mathcal{T}}(\mathcal{F}_{\mathcal{K}^+_c}) \leq e \sqrt{\frac{B \log k}{\gamma^2 n}} \]
+    
 \end{frame}

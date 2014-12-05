@@ -46,11 +46,12 @@ Can show $\Rad_n(\F_1) \le \Rad_n(F_1) + \Rad_n(F)$.
 \begin{frame}
 \frametitle{Proof Continued ($\Rad_n(\F_1)$ Upper Bound)}
 If $r \in (1,2]$ and $1/r + 1/s = 1$ then $\frac{1}{2} \| \cdot \|_{2,s}^2$ is $s$-smooth and so
-its conjugate $\frac{1}{2}\| \cdot \|_{2,r}^2$ is $1/s$-strongly convex. So,
+its conjugate $\frac{1}{2}\| \cdot \|_{2,r}^2$ is $1/s$-strongly convex. 
+Because 
+\[\|\y \x^T\|_{2,s} = \|\y\|_2 \|\x\|_s \le d^{1/s} Y_2 (dX_\infty^s)^{1/s},\] 
 setting $f(W) = \frac{1}{2}\|W\|_{2,r}^2$ and $\| \cdot \| = \| \cdot \|_{2,r}$ in 
 the previous theorem gives
-\[\Rad_n(\F_1) \le 2\|y\x^T\|_{2,s}\bar{W}_{2,1}\sqrt{\frac{s}{n}} \le 
-   2d^{1/s}Y_2X_\infty \bar{W}_{2,1}\sqrt{\frac{s}{n}}.\]
+\[\Rad_n(\F_1) \le 2d^{1/s}Y_2X_\infty \bar{W}_{2,1}\sqrt{\frac{s}{n}}.\]
 Set $s = \log d$ to get
 \[\Rad_n(\F_1) \le 2eY_2X_\infty \bar{W}_{2,1}\sqrt{\frac{\log d}{n}}.\]
 \end{frame}
@@ -65,7 +66,8 @@ For $\F_2$,
   &= \sum_i \|W_{\cdot,i}\|_2 \cdot \sum_j \|W_{\cdot,j}\|_2 \\
   &= \|W\|_{2,1}^2
 \end{align*}
-Using a result from \cite{kakade2009complexity} and $\|\x\x^T\|_{\infty,\infty}$ gives
+Using a result from \cite{kakade2009complexity} relating $L_\infty$ and $L_1$ norms
+and $\|\x\x^T\|_{\infty,\infty}$ gives
 \[\Rad_n(\F_2) \le X_\infty^2 \bar{W}_{2,1}^2 \sqrt{\frac{2\log d}{n}}.\]
 \end{frame}
 

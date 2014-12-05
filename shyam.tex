@@ -168,8 +168,8 @@
 \begin{frame}{Wait? What? The updates do not match!}
   Proof Sketch (ignore $\eta$),
   \begin{align*}
-    \argmin_w \sum_{s=1}^t l_s(w) + f(w) &= \argmin_w \sum_{s=1}^t l_s(w_s)+\dotprod{v_s}{w} + f(w) \tag{First Order approx $v_s \in  \partial l_s(w_s)$} \\
-    = \argmin_w \sum_{s=1}^t \dotprod{v_s}{w} + f(w) &= \argmax_w \dotprod{-\sum_{s=1}^t v_s}{w} -f(w) \\
+   & \argmin_w \sum_{s=1}^t l_s(w) + f(w) = \argmin_w \sum_{s=1}^t l_s(w_s)+\dotprod{v_s}{w-w_s} + f(w) \tag{First Order approx $v_s \in  \partial l_s(w_s)$} \\
+    &= \argmin_w \sum_{s=1}^t \dotprod{v_s}{w} + f(w) = \argmax_w \dotprod{-\sum_{s=1}^t v_s}{w} -f(w) \\
     &= \grad \opt{f}(-\sum_{s=1}^t v_s) \tag{update in the paper}
   \end{align*}
 \end{frame}

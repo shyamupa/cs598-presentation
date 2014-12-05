@@ -149,7 +149,7 @@
   \end{theorem}
 \end{frame}
 
-\begin{frame}
+\begin{frame}{Proof}
     \begin{align*}    
       & l_t(w_t) - l_t(u) \le \dotprod{v_t}{w_t - u} \tag{convexity} \\
       & -\eta\sum_{t=1}^T \dotprod{v_t}{u} -f(u) \le -\eta\sum_{t=1}^T \dotprod{v_t}{w_t} +\frac{1}{2\beta} \sum_{t=1}^T \|\eta v_t\|_{*}^2 \\
@@ -158,7 +158,7 @@
     \end{align*}
 \end{frame}
 
-\begin{frame}
+\begin{frame}{Proof Continued}
     \begin{align*}    
       & \sum_{t=1}^T \dotprod{v_t}{w_t - u} \le \frac{\eta V^2T}{2\beta} + \frac{f(u)}{\eta} \\
       & \sum_{t=1}^T l_t(w_t) - \sum_{t=1}^T l_t(u) \le \sum_{t=1}^T \dotprod{v_t}{w_t - u} \le \frac{\eta V^2T}{2\beta} + \frac{f(u)}{\eta} \\
@@ -180,24 +180,20 @@
 \end{frame}
 
 \begin{frame}{Rademacher Bounds}
+    \frametitle{Theorem}
     Let $f$ be a $\beta$-strongly convex function. Define,
     \begin{align*}
       & \X = \{ x : \|x\|_{*} \le K \} \tag{$K$ is a constant upper bound}\\
       & \mathscr{W} = \{w : f(w) \le M\} \tag{space of parameters}\\
-      & \F = \{ x \mapsto \dotprod{w}{x} : w \in \mathscr{W} \} \tag{A class of linear functions defined over the parameter space}\\
+      & \F = \{ x \mapsto \dotprod{w}{x} : w \in \mathscr{W} \} \tag{A class of linear functions defined over the parameter space}
     \end{align*}
-\end{frame}
-
-\begin{frame}{Rademacher Bounds}
-  \begin{theorem}
     For any $T \in \X^n$, for the function class $\F$, we have
     \begin{align*}
       & \Rad_T(\F) \le K\sqrt{\frac{2M}{\beta n}} \\
     \end{align*}
-  \end{theorem}
 \end{frame}
 
-\begin{frame}
+\begin{frame}{Proof}
     \begin{align*}
       \sum_{i=1}^n \dotprod{v_i}{u} - f(u) \le \frac{1}{2\beta} \sum_{i=1}^n \|v_i\|^2 + \sum_{i=1}^n \dotprod{\grad \opt{\f}(v_{1:i-1})}{v_i}
     \end{align*}
@@ -208,7 +204,7 @@
     \end{alignat*}
 \end{frame}
 
-\begin{frame}
+\begin{frame}{Proof Continued}
     \begin{align*}
       \sup_{w \in \mathscr{W}} \sum_{i=1}^n \dotprod{w}{\epsilon_i \lambda X_i} & \le \frac{\lambda^2 K^2 n}{2\beta} + M \\
       & + \sum_{i=1}^n \dotprod{\grad \opt{f}(v_{1:i-1})}{\epsilon_i \lambda X_i}

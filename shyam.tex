@@ -143,7 +143,7 @@
 
 \begin{frame}{Generalized Regret Bound}
   \begin{align*}
-    Regret(\w_1,\w_2,\cdots,\w_T,u) = \sum_{t=1}^T l_t(w_t) - \min_{u \in S} \sum_{t=1}^T l_t(u)
+    Regret(\w_1,\w_2,\cdots,\w_{\T},u) = \sum_{t=1}^{\T} l_t(w_t) - \min_{u \in S} \sum_{t=1}^{\T} l_t(u)
   \end{align*}
 \end{frame}
 
@@ -154,7 +154,7 @@
   \begin{figure}
   \begin{algorithmic}[1]
     \Let{$\w_1$}{$\grad \opt{f}(0)$} 
-    \For{$t=1$ ... $T$}
+    \For{$t=1$ ... $\T$}
     \State Play $\w_t \in S$
     \State Receive $l_t$ and pick $v_t \in \partial l_t(w_t)$
     \State Update,
@@ -176,8 +176,8 @@
 \begin{frame}
   Assumptions:
   \begin{itemize}
-  \item Loss $l_t$ is convex and $V$-lipshitz wrt dual norm $\|\|_{*}$.
-  \item $f$ is $\beta$ strongly convex wrt $\|\|$ and has $\opt{f}(0)=0$.
+  \item Loss $l_t$ is convex and $V$-lipshitz wrt dual norm $\| \cdot \|_{*}$.
+  \item $f$ is $\beta$-strongly convex wrt $\| \cdot \|$ and has $\opt{f}(0)=0$.
   \end{itemize}
 
   \begin{theorem}
@@ -207,24 +207,24 @@
 
 
 \begin{frame}{Rademacher Bounds}
-  For a dataset $T=(X_1,X_2,...,X_n)$ of i.i.d samples from a fixed distribution $\X$, the rademacher complexity of a class of function $\F$ on $T$ is given y
+  For a dataset $\T=(X_1,X_2,...,X_n)$ of i.i.d samples from a fixed distribution $\X$, the rademacher complexity of a class of function $\F$ on $\T$ is given y
   \begin{align*}
-    \Rad_T(\F) = \E \left[ \sup_{f \in \F} \frac{1}{n}\sum_{i=1}^n \epsilon_i f(X_i) \right]
+    \Rad_{\T}(\F) = \E \left[ \sup_{f \in \F} \frac{1}{n}\sum_{i=1}^n \epsilon_i f(X_i) \right]
   \end{align*}
   where $\Pr(\epsilon_i = 1) = \Pr(\epsilon_i = -1) = 1/2$.
-  We can also take expectation over $T$, to obtain,
+  We can also take expectation over $\T$, to obtain,
   \begin{align*}
-    \Rad_n(\F)=\E_{T}\left[\Rad_T(\F)\right]
+    \Rad_n(\F)=\E_{\T}\left[\Rad_{\T}(\F)\right]
   \end{align*}
 \end{frame}
 
 \begin{frame}{Rademacher Bounds}
-    \frametitle{Theorem}
+    \frametitle{Theorem 9}
     Let $f$ be a $\beta$-strongly convex function. Define,
     \begin{align*}
       & \X = \{ x : \|x\|_{*} \le K \} \tag{$K$ is a constant upper bound}\\
-      & \mathscr{W} = \{w : f(w) \le M\} \tag{space of parameters}\\
-      & \F = \{ x \mapsto \dotprod{w}{x} : w \in \mathscr{W} \} \tag{A class of linear functions defined over the parameter space}
+      & \mathcal{W} = \{w : f(w) \le M\} \tag{space of parameters}\\
+      & \F = \{ x \mapsto \dotprod{w}{x} : w \in \mathcal{W} \} \tag{A class of linear functions defined over the parameter space}
     \end{align*}
     For any $T \in \X^n$, for the function class $\F$, we have
     \begin{align*}
@@ -236,21 +236,21 @@
     \begin{align*}
       \sum_{i=1}^n \dotprod{v_i}{u} - f(u) \le \frac{1}{2\beta} \sum_{i=1}^n \|v_i\|_{*}^2 + \sum_{i=1}^n \dotprod{\grad \opt{\f}(v_{1:i-1})}{v_i}
     \end{align*}
-    $v_i=\lambda\epsilon_i X_i,u=w$, and taking $\sup_{w \in \mathscr{W}}$,
+    $v_i=\lambda\epsilon_i X_i,u=w$, and taking $\sup_{w \in \mathcal{W}}$,
     \begin{alignat*}{2}
-      & \sup_{w \in \mathscr{W}} \sum_{i=1}^n \dotprod{w}{\epsilon_i \lambda X_i} & \le \frac{\lambda^2}{2\beta}\sum_{i=1}^n \|\epsilon_i \lambda X_i\|_{*}^2 + \sup_{w \in \mathscr{W}} f(w) \\
+      & \sup_{w \in \mathcal{W}} \sum_{i=1}^n \dotprod{w}{\epsilon_i \lambda X_i} & \le \frac{\lambda^2}{2\beta}\sum_{i=1}^n \|\epsilon_i \lambda X_i\|_{*}^2 + \sup_{w \in \mathcal{W}} f(w) \\
       & & + \sum_{i=1}^n \dotprod{\grad \opt{f}(v_{1:i-1})}{\epsilon_i \lambda X_i}
     \end{alignat*}
 \end{frame}
 
 \begin{frame}{Proof Continued}
     \begin{align*}
-      \sup_{w \in \mathscr{W}} \sum_{i=1}^n \dotprod{w}{\epsilon_i \lambda X_i} & \le \frac{\lambda^2 K^2 n}{2\beta} + M \\
+      \sup_{w \in \mathcal{W}} \sum_{i=1}^n \dotprod{w}{\epsilon_i \lambda X_i} & \le \frac{\lambda^2 K^2 n}{2\beta} + M \\
       & + \sum_{i=1}^n \dotprod{\grad \opt{f}(v_{1:i-1})}{\epsilon_i \lambda X_i}
     \end{align*}
     Taking expectation of both sides we get,
     \begin{align*}
-      & n\lambda\Rad_T(\F) \le \frac{\lambda^2 K^2 n}{2\beta} + M + 0\\
-      & \Rad_T(\F) \le \frac{\lambda K^2}{2\beta} + \frac{M}{n\lambda}
+      & n\lambda\Rad_{\T}(\F) \le \frac{\lambda^2 K^2 n}{2\beta} + M + 0\\
+      & \Rad_{\T}(\F) \le \frac{\lambda K^2}{2\beta} + \frac{M}{n\lambda}
     \end{align*}
 \end{frame}

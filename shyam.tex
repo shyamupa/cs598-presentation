@@ -119,7 +119,7 @@
 
 \begin{frame}{A Useful Lemma}
   \begin{lemma}
-    If $\f$ is $\beta$ strong convex wrt $\|\cdot\|$ and $\opt{\f}(0)=0$, then for any sequence $v_1,v_2,...,v_n$ and any $u$, we have,
+    If $\f$ is $\beta$-strongly convex wrt $\|\cdot\|$ and $\opt{\f}(0)=0$, then for any sequence $v_1,v_2,...,v_n$ and any $u$, we have,
     \begin{align*}
       \sum_{i=1}^n \dotprod{v_i}{u} - f(u) \le \opt{\f}(v_{1:n}) \le \sum_{i=1}^n \dotprod{\grad \opt{\f}(v_{1:i-1})}{v_i} +\frac{1}{2\beta} \sum_{i=1}^n \|v_i\|_{*}^2
     \end{align*}
@@ -173,17 +173,18 @@
     &= \grad \opt{f}(-\sum_{s=1}^t v_s) \tag{update in the paper}
   \end{align*}
 \end{frame}
+
 \begin{frame}
   Assumptions:
   \begin{itemize}
-  \item Loss $l_t$ is convex and $V$-lipshitz wrt dual norm $\| \cdot \|_{*}$.
+  \item Loss $l_t$ is convex and $V$-Lipshitz wrt dual norm $\| \cdot \|_{*}$.
   \item $f$ is $\beta$-strongly convex wrt $\| \cdot \|$ and has $\opt{f}(0)=0$.
   \end{itemize}
 
   \begin{theorem}
     Suppose FoReL is run with a $f$ and $l_t$ that satisfy the above assumptions. Then,
     \begin{align*}    
-      Regret(\w_1,\w_2,\cdots,\w_T,u) \le \frac{\max_{u \in S} \f(u)}{\eta} + \frac{\eta V^2T}{2\beta}
+      Regret(\w_1,\w_2,\cdots,\w_{\T},u) \le \frac{\max_{u \in S} \f(u)}{\eta} + \frac{\eta V^2\T}{2\beta}
     \end{align*}  
   \end{theorem}
 \end{frame}
@@ -191,17 +192,17 @@
 \begin{frame}{Proof}
     \begin{align*}    
       %% & l_t(w_t) - l_t(u) \le \dotprod{v_t}{w_t - u} \tag{convexity} \\
-      & -\eta\sum_{t=1}^T \dotprod{v_t}{u} -f(u) \le -\eta\sum_{t=1}^T \dotprod{v_t}{w_t} +\frac{1}{2\beta} \sum_{t=1}^T \|\eta v_t\|_{*}^2 \tag{Lemma on the sequence $-\eta v_1,-\eta v_2,...,-\eta v_T$}\\
+      & -\eta\sum_{t=1}^{\T} \dotprod{v_t}{u} -f(u) \le -\eta\sum_{t=1}^{\T} \dotprod{v_t}{w_t} +\frac{1}{2\beta} \sum_{t=1}^{\T} \|\eta v_t\|_{*}^2 \tag{Lemma on the sequence $-\eta v_1,-\eta v_2,...,-\eta v_{\T}$}\\
       & \|v_t\|_{*} \le V \tag{$v_t \in \partial l_t(w_t)$ and $l_t$ is V-Lipshitz} \\
-      & -\eta\sum_{t=1}^T \dotprod{v_t}{u} -f(u) \le -\eta\sum_{t=1}^T \dotprod{v_t}{w_t} +\frac{\eta V^2T}{2\beta} \\
+      & -\eta\sum_{t=1}^{\T} \dotprod{v_t}{u} -f(u) \le -\eta\sum_{t=1}^{\T} \dotprod{v_t}{w_t} +\frac{\eta V^2\T}{2\beta} \\
     \end{align*}
 \end{frame}
 
 \begin{frame}{Proof Continued}
     \begin{align*}    
-      & \sum_{t=1}^T \dotprod{v_t}{w_t - u} \le \frac{\eta V^2T}{2\beta} + \frac{f(u)}{\eta} \\
-      & \sum_{t=1}^T l_t(w_t) - \sum_{t=1}^T l_t(u) \le \sum_{t=1}^T \dotprod{v_t}{w_t - u} \le \frac{\eta V^2T}{2\beta} + \frac{f(u)}{\eta} \\
-      & \max_{u \in S} \sum_{t=1}^T l_t(w_t) - \sum_{t=1}^T l_t(u) \le \max_{u \in S} \frac{\eta V^2T}{2\beta} + \frac{f(u)}{\eta}
+      & \sum_{t=1}^{\T} \dotprod{v_t}{w_t - u} \le \frac{\eta V^2\T}{2\beta} + \frac{f(u)}{\eta} \\
+      & \sum_{t=1}^{\T} l_t(w_t) - \sum_{t=1}^{\T} l_t(u) \le \sum_{t=1}^{\T} \dotprod{v_t}{w_t - u} \le \frac{\eta V^2\T}{2\beta} + \frac{f(u)}{\eta} \\
+      & \max_{u \in S} \sum_{t=1}^{\T} l_t(w_t) - \sum_{t=1}^{\T} l_t(u) \le \max_{u \in S} \frac{\eta V^2\T}{2\beta} + \frac{f(u)}{\eta}
     \end{align*}  
 \end{frame}
 
@@ -226,9 +227,9 @@
       & \mathcal{W} = \{w : f(w) \le M\} \tag{space of parameters}\\
       & \F = \{ x \mapsto \dotprod{w}{x} : w \in \mathcal{W} \} \tag{A class of linear functions defined over the parameter space}
     \end{align*}
-    For any $T \in \X^n$, for the function class $\F$, we have
+    For any $\T \in \X^n$, for the function class $\F$, we have
     \begin{align*}
-      & \Rad_T(\F) \le K\sqrt{\frac{2M}{\beta n}} \\
+      & \Rad_{\T}(\F) \le K\sqrt{\frac{2M}{\beta n}} \\
     \end{align*}
 \end{frame}
 

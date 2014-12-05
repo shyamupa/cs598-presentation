@@ -2,7 +2,9 @@
 
   We follow the definition of learning kernels given in Lanckriet et al. \cite{lanckriet2004learning}.
 
-  Choose a set of kernels $\{K_1, K_2, \cdots K_k\}$, and consider convex combinations:
+  \vspace*{1.2cm}
+  
+  Choose a set of base kernels $\{K_1, K_2, \cdots K_k\}$, and consider convex combinations:
 
   \[ \mathcal{K}^+_c = \left\{ \sum^k_{j=1} \mu_j K_j ~:~ \mu_j \geq 0, \sum^k_{j=1} \mu_j = 1 \right\}  \]
 
@@ -41,14 +43,14 @@
 
   \begin{theorem}[9 Generalization]
     Lef $f$ be a $\beta$-strongly convex function w.r.t. a norm $\|\cdot \|$ on $S$ such that
-    $f^*(\mathbf{0}) = 0$. Let $\X = \{ x : \|x\|_* \leq X\}$ and $\mathcal{W} = \{ w : f(w) \leq f_{max} \}$.
+    $f^*(\mathbf{0}) = 0$. Let $\X = \{ x : \|x\|_* \leq P\}$ and $\mathcal{W} = \{ w : f(w) \leq M \}$.
     Consider the class of linear functions,
 
     \[ \mathcal{F} = \{ x \mapsto \langle w,x \rangle : w \in \mathcal{W} \}  \]
 
     Then, for any dataset $\mathcal{T} \in \X^n$, we have
 
-    \[ \Rad_{\mathcal{T}}(\mathcal{F}) \leq X \sqrt{ \frac{2f_{max}}{\beta n}  } \]
+    \[ \Rad_{\mathcal{T}}(\mathcal{F}) \leq P \sqrt{ \frac{2M}{\beta n}  } \]
   \end{theorem}
       
 
@@ -59,7 +61,7 @@
 
   First condition:
   
-  \[ \X = \{ x ~:~ \|x\|_* \leq X\} \]
+  \[ \X = \{ x ~:~ \|x\|_* \leq P\} \]
 
   Satisfied by:
 
@@ -72,7 +74,7 @@
 
   Second condition:
 
-  \[ \mathcal{W} = \{ w : f(w) \leq f_{max} \}  \]
+  \[ \mathcal{W} = \{ w : f(w) \leq M \}  \]
 
   Satisfied by:
   
@@ -100,14 +102,14 @@
 
   \begin{theorem}[9 Generalization]
     Lef \highlight{f} be a $\beta$-strongly convex function w.r.t. a norm $\|\cdot \|$ on $S$ such that
-    $f^*(\mathbf{0}) = 0$. \highlight{\X = \{ x : \|x\|_* \leq X\}} and \highlight{\mathcal{W} = \{ w : f(w) \leq f_{max} \}}.
+    $f^*(\mathbf{0}) = 0$. \highlight{\X = \{ x : \|x\|_* \leq P\}} and \highlight{\mathcal{W} = \{ w : f(w) \leq M \}}.
     Consider the class of linear functions,
 
     \[ \mathcal{F} = \{ x \mapsto \langle w,x \rangle : w \in \mathcal{W} \}\]
 
     Then, for any dataset $\mathcal{T} \in \X^n$, we have
 
-    \[ \Rad_{\mathcal{T}}(\mathcal{F}) \leq X \sqrt{ \frac{2f_{max}}{\beta n}  } \]
+    \[ \Rad_{\mathcal{T}}(\mathcal{F}) \leq P \sqrt{ \frac{2M}{\beta n}  } \]
   \end{theorem}
       
 \end{frame}
@@ -133,9 +135,9 @@
 
 \begin{frame}{Plug and Chug}
 
-  Substitute $X = k^{1/s}\sqrt{B}, f_{max} = \frac{1}{2}\gamma^2, \beta = 1/s$ into 
+  Substitute $P = k^{1/s}\sqrt{B}, M = \frac{1}{2}\gamma^2, \beta = 1/s$ into 
 
-    \[ \Rad_{\mathcal{T}}(\mathcal{F}) \leq X \sqrt{ \frac{2f_{max}}{\beta n}  } \]
+    \[ \Rad_{\mathcal{T}}(\mathcal{F}) \leq P \sqrt{ \frac{2M}{\beta n}  } \]
 
     And we have:
 
